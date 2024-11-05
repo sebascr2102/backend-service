@@ -1,7 +1,7 @@
 import express, { Application } from "express";
 import cors from "cors";
 import { AppDataSource } from "./data.source";
-import router from "./Routers/product.routes";
+import router from "./Routers/productRoutes";
 import swaggerUI from "swagger-ui-express";
 import swaggerSpec from "./Swagger/swagger";
 
@@ -13,10 +13,10 @@ app.use(cors());
 app.use(express.json());
 
 // Rutas
-app.use("/API/", router); // Ruta de productos
+app.use("/api/products", router); // Ruta de productos
 
 // Documentacion Swagger
-app.use("api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
+app.use("/api-docs", swaggerUI.serve, swaggerUI.setup(swaggerSpec));
 
 // Inicializacion de la base de datos y el servicio
 AppDataSource.initialize()
